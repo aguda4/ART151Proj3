@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Api test</title>
+    <meta name = "description"content ="">
+    <link rel = "styleheet" href = "style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src = "javascript.js"></script>
+</head>
+<body class ="backgroundColor">
+    
+</body>
+</html>
+
+<script>
+    //console.log(window);
+    //getValue();
+    //fakedata();
+    apicallValue();
+    /*
+    timer();
+    function timer(){
+        setTimeout(function(){
+            getValue();
+            timer();
+        },3000)
+        */
+       // function getValue() {
+           function apicallValue() {
+               lat = '41.878';
+               lon = '-87.629';
+               APIkey = 'abe4d2e4b7080694f170017c8e38a045'
+               units = 'imperial';
+               //https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${APIkey}&uints=${units}`, //hardcode everything
+
+            $.ajax({
+                type: 'GET',
+                //GET POST
+                datatype: 'json',
+                //url: 'http://api.open-notify.org/iss-now.json',
+                url: `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${APIkey}&uints=${units}`,
+                async: false,
+                crossDomain: true,
+                complete: function (data) {
+
+                    if (response.readyState == 4 && response.status == 200) {
+                        console.log(response);
+                        Lat == response.responseJSON.iss_position.latitude;
+                        Long == response.responseJSON.iss_position.longitude;
+                        temp = response.responseJSON.main.temp;
+                        desc = response.responseJSON.weather[0].description; //weather is in the array
+                        console.log(desc);
+                        console.log(temp);
+                        //console.log(Lat);
+                        //console.log(Long);
+
+
+                    /*if (data.readyState == 4 && data.status == 200) {
+                        console.log(data);
+                        Lat == data.responseJSON.iss_position.latitude;
+                        Long == data.responseJSON.iss_position.longitude;*/
+                        //
+                        //console.log(remap(Lat));
+                        //console.log(remap(Long));
+                
+                    }
+                }
+            });
+        }
+       /* function remap(num) {
+            return ((num-(-90)) * (225 - 0) / (210))
+        }*/
+        function fakedata(){
+            $.ajax({
+            url: 'https://randomuser.me/api/',
+            dataType: 'json',
+            success: function(data) {
+              console.log(data);
+            }
+          })};
+
+</script>
